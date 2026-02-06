@@ -7,7 +7,6 @@ package nihongo
 import (
 	"fmt"
 	"io"
-	"io/ioutil"
 	"strings"
 	"testing"
 )
@@ -32,7 +31,7 @@ func testBytes(name string, t *testing.T, test testPair, tr func([]byte) []byte)
 }
 
 func testReader(name string, t *testing.T, test testPair, tr func(io.Reader) io.Reader) {
-	data, err := ioutil.ReadAll(tr(strings.NewReader(test.in)))
+	data, err := io.ReadAll(tr(strings.NewReader(test.in)))
 	if err != nil {
 		t.Errorf("reader %s: %v\n", name, err)
 		return
